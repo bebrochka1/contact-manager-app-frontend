@@ -1,8 +1,8 @@
 # To run properly write in CLI
 
-### npm install
-### npm install bootstrap
-### npm install axios
+### `npm install`
+### `npm install bootstrap`
+### `npm install axios`
 
 ## Available Scripts
 
