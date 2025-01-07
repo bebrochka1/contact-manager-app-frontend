@@ -46,13 +46,15 @@ export const ContactTable = () => {
                 salary: parseFloat(editedContact.salary),
             };
 
-            console.log("Sending updated contact", updatedContact);
-
-            await contactService.updateContact(updatedContact);
+            await contactService.updateContact(updatedContact)
+            .catch((error) => {
+                console.log(error);
+            });
+            
             fetchContacts();
             setEditingContactId(null);
         } catch (error) {
-            console.log("Error saving contact", error);
+            console.log("Error saving contact", error.stack);
         }
     };
 
@@ -78,7 +80,7 @@ export const ContactTable = () => {
             <>
                 <div className="d-flex pt-10 border border-dark m-5">
                     <table className="table caption-top">
-                        <thead>
+                        <thead className='table-dark'>
                             <tr>
                                 <th onClick={() => handleSort('name')} scope="col">Name</th>
                                 <th onClick={() => handleSort('dateOfBirth')} scope="col">Date of Birth</th>
@@ -86,6 +88,7 @@ export const ContactTable = () => {
                                 <th onClick={() => handleSort('phone')} scope="col">Phone</th>
                                 <th onClick={() => handleSort('salary')} scope="col">Salary</th>
                                 <th scope="col">Actions</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -154,7 +157,7 @@ export const ContactTable = () => {
                                             
                                             
                                         ) : (
-                                            <div className="">
+                                            <div>
                                                 <button className='btn btn-secondary' onClick={() => handleEdit(contact)}>Edit</button>
                                                 </div>
                                             
